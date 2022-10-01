@@ -7,4 +7,4 @@ git clone https://github.com/gotr00t0day/vulnparams.git
 
 cd vulnparams
 
-python3 param_finder.py 
+python3 param_finder.py https://target.com
