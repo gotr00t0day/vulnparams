@@ -2,6 +2,7 @@ from colorama import Fore
 from urllib.parse import urljoin
 import requests
 import re
+import sys
 
 requests.packages.urllib3.disable_warnings()
 
@@ -77,4 +78,4 @@ def get_params(domain: str) -> str:
 
 if __name__ == "__main__":
     print(banner)
-    get_params("https://pornhub.com")
+    get_params(sys.argv[1])
