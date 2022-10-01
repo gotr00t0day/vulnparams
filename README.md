@@ -1,2 +1,2 @@
 # vulnparams
-crawl a website for links and expose all the vulnerable parameters.
+crawl a website for links and expose all the potential vulnerable parameters.
