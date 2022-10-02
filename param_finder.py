@@ -47,9 +47,9 @@ def get_params(domain: str) -> str:
             if link not in duplicatelinks:
                 if "=" in link:
                     params_links.append(link + "\n")
-        param_value = []
-        dic = {}
-        payloads = []
+        param_value: list[str] = []
+        dic: dict[str, str] = {}
+        payloads: list[str] = []
         for params2 in params_links:
             parameters = params2.split("=")[0]
             pos = max(parameters.find("?"), 0)
@@ -70,12 +70,16 @@ def get_params(domain: str) -> str:
             if value in openredirect_list:
                 payloads.append("OPEN REDIRECT")
                 print(f"{Fore.MAGENTA}[+] {Fore.CYAN}-{Fore.WHITE} Link: {Fore.YELLOW}{item} {Fore.GREEN} Injection Point: {Fore.LIGHTBLUE_EX}{value} {Fore.WHITE} Payload: {Fore.CYAN} OPEN REDIRECT")
-
+            if not payloads:
+                print(f"{Fore.MAGENTA}[+] {Fore.CYAN}-{Fore.WHITE} Link: {Fore.YELLOW}{item} {Fore.GREEN} Injection Point: {Fore.LIGHTBLUE_EX}{value}")
     except requests.exceptions.ConnectionError:
         print (Fore.RED + "Connection Error")
     except requests.exceptions.MissingSchema:
         print (Fore.RED + "Please use: http://site.com")
+    except UnicodeDecodeError:
+        pass
 
 if __name__ == "__main__":
     print(banner)
+    print(f"{Fore.WHITE} Searching for vulnerable paramaters for {Fore.CYAN}SSRF, RCE, Open Redirect{Fore.GREEN}\n")
     get_params(sys.argv[1])
